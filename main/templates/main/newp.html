@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+{% block content %}
+{% if messages %}
+{% for message in messages  %}
+{{message}}
+{% endfor %}
+{% endif %}
+{% if errors %}
+{% for error in errors  %}
+{{error}}{% endfor %}
+{% endif %}
+    <div class="content-section">
+        
+        <p>Please enter your new password.</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-outline-info" type="submit">Reset password</button>
+        </form>
+    </div>
+{% endblock %}

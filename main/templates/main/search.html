@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% block title  %}home{% endblock  %}
+{% block content %}
+<form method="GET" action="{% url 'main:search'%}" class="bg-light m-2">
+    <input type="text" name="query" value="{{query}} " class="text-dark" placeholder="search by title or writer">
+    <button type="submit" class="btn btn-outline-info " >search</button>
+</form>
+<hr>
+<div class="flex-container m-2">
+    {% for post in notes  %}
+        <div class="card m-2">
+            <div class="card-header">{{post.created_by}} </div>
+            <div class="card-body ">
+                    <p>{{post.note}}</p>
+            </div>
+        </div>{%empty%}<p>Note Yet :(</p>
+{% endfor %}
+</div>
+{% endblock  %}

@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block title  %}signup{% endblock  %}
+{% block content %}
+{% if messages %}{% for message in messages  %}
+<div class="alert dismissible fade show bg-info mt-2 ml-auto p-1 ">
+{{message}}
+<button type="button" data-bs-dismiss="alert" class="btn-close" aria-label="close"></button>
+</div>
+{% endfor %}{% endif %}
+<div class="container center "> 
+<form action="." method="POST">
+    {% csrf_token %}
+    <table>
+    {{form.as_t}}
+    <tr>
+    <td>{{form.username}}</td>
+    </tr>
+    
+    <tr>
+    <td>{{form.password}}</td>
+    </tr>
+    </table>
+    <button type="submit" class="btn btn-outline-primary" aria-label="submit">Done</button>
+    
+        {% if form.errors%}
+        <div class="alert bg-warning" role="alert" >
+        {% for error in form.field %}
+            {{error}}
+            <button type="button" data-bs-dismiss="alert" class="btn-close" aria-label="close"></button>
+        {% endfor %}
+        </div>
+        {% endif %}
+    
+</form>
+</div>
+{% endblock  %}

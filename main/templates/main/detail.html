@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% block title  %}home{% endblock  %}
+{% block content %}
+<div class="container border shadow">
+    <h4>Writer :{{note.created_by}}</h4>
+    <p>Title :{{note.title}}</p>
+    {{note.note}}
+    <hr>
+    <div>
+        <p>{{note.created_at}}</p>
+    </div>
+
+</div>
+{%endblock%}

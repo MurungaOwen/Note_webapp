@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% block title  %}home{% endblock  %}
+{% block content %}
+<form method="GET" action="{% url 'main:search'%}" class=" m-2">
+    <input type="text" name="query" value="{{query}}" class="text-dark">
+    <button type="submit" class="btn btn-outline-info " placeholder="search by title or writer">search</button>
+</form>
+<hr>
+<div class="flex-container">
+    {% for post in posts  %}
+        <div class="card m-2">
+            <div class="card-header">{{post.created_by.username}} @{{post.created_at}}</div>
+            <div class="card-body ">
+                    <p>Title:{{post.title}}</p>
+                    {% if request.user == post.created_by %}<a href="{% url 'main:delete' post.id %}"><button class="btn btn-outline-danger m-2">Delete</button></a>
+                    <a href="{% url 'main:edit' post.id %}"><button class="btn btn-outline-success m-2">Edit</button></a>{% endif %}
+                    
+                    <a href="{% url 'main:note' post.id%}"><button class="btn btn-outline-success">read more</button></a>
+            </div>
+        </div>{%empty%}<p>No posts Yet :(</p>
+{% endfor %}
+</div>
+{% endblock  %}
